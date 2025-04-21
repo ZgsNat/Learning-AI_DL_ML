@@ -1,6 +1,7 @@
 import pandas as pd
 from ydata_profiling import ProfileReport
 import os
+from sklearn.model_selection import train_test_split
 # Get the current file's directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 # Construct path to data file
@@ -15,3 +16,7 @@ data = pd.read_csv(data_path)
 target = "Outcome"
 x = data.drop(target, axis=1)
 y = data[target]
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+print(x_train.shape, y_train.shape)
+print(x_test.shape, y_test.shape)
